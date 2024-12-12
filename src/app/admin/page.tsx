@@ -42,7 +42,7 @@ export default function AdminDashboard() {
       fetchData()
       console.log(registrations)
     }
-  }, [])
+  })
 
   if (!session) {
     redirect('api/auth/signin')
