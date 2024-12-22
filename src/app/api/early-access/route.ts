@@ -7,13 +7,12 @@ import { neon } from '@neondatabase/serverless'
 // Admin authentication middleware
 async function checkAdminAccess(req: NextRequest) {
   const token = await getToken({ req })
-  console.log('name', token)
+
   return token?.name === 'Admin'
 }
 
 // Protected admin route to list registered emails
 export async function GET(request: NextRequest) {
-  console.log('request', request)
   try {
     // Check admin authentication
     const isAdmin = await checkAdminAccess(request)
@@ -31,7 +30,7 @@ export async function GET(request: NextRequest) {
       
     `
     const rows = JSON.stringify(arr)
-    console.log('rows', rows)
+
     return NextResponse.json(rows)
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })

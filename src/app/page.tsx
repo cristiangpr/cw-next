@@ -13,7 +13,7 @@ import {
 import Image from 'next/image'
 import { FadeInSection } from './components/FadeInSection'
 import Header from './components/Header'
-
+import { create } from './actions'
 import { styled, useTheme } from '@mui/material/styles'
 
 const features = [
@@ -45,7 +45,16 @@ const features = [
 
 export default function Home() {
   const [open, setOpen] = useState(false)
+  const [success, setSuccess] = useState(false)
   const theme = useTheme()
+  const handleCreate = async (data: FormData) => {
+    const response = await create(data)
+    if (response) setSuccess(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+    setSuccess(false)
+  }
 
   return (
     <StyledBox>
@@ -196,13 +205,19 @@ export default function Home() {
       </StyledContainer>
 
       {/* Early Access Modal */}
-      <StyledModal open={open} onClose={() => setOpen(false)}>
+      <StyledModal open={open} onClose={() => handleClose()}>
         <StyledModalContent>
-          <Typography gutterBottom align="center" color="textPrimary">
-            Enter your email and write a short message about your interest in
-            Counterweight
-          </Typography>
-          <form action="/create">
+          {success ? (
+            <Typography gutterBottom align="center" color="textPrimary">
+              Registration Succesful!
+            </Typography>
+          ) : (
+            <Typography gutterBottom align="center" color="textPrimary">
+              Enter your email and write a short message about your interest in
+              Counterweight
+            </Typography>
+          )}
+          <form action={handleCreate}>
             <StyledTextField
               fullWidth
               label="Email Address"
