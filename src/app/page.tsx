@@ -8,7 +8,8 @@ import {
   Button,
   TextField,
   Box,
-  Modal
+  Modal,
+  useMediaQuery
 } from '@mui/material'
 import Image from 'next/image'
 import { FadeInSection } from './components/FadeInSection'
@@ -47,6 +48,7 @@ export default function Home() {
   const [open, setOpen] = useState(false)
   const [success, setSuccess] = useState(false)
   const theme = useTheme()
+  const isSmall = useMediaQuery(theme.breakpoints.down('md'))
   const handleCreate = async (data: FormData) => {
     const response = await create(data)
     if (response) setSuccess(true)
@@ -167,15 +169,16 @@ export default function Home() {
             item
             xs={12}
             sx={{
-              textAlign: 'center'
+              textAlign: 'center',
+              aspectRatio: '16 / 9'
             }}
           >
             <Typography variant="h4" gutterBottom color="textPrimary">
               Counterweight in action
             </Typography>
             <iframe
-              width="560"
-              height="315"
+              width={isSmall ? '80%' : '50%'}
+              height={isSmall ? '80%' : '50%'}
               src="https://www.youtube.com/embed/k_HB0IM7Scc?si=4joRITxxc-sl7vR5"
               title="YouTube video player"
               frameBorder="0"
