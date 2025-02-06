@@ -12,8 +12,9 @@ export const metadata: Metadata = {
   description:
     'A Hedera DLT powered chain of provenance solution for digital media',
   icons: {
-    icon: '../../public/icon.png'
-  }
+    icon: '/icon.png'
+  },
+  manifest: '/manifest.json'
 }
 
 export default function RootLayout({

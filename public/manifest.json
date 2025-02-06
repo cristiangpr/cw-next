@@ -1,0 +1,10 @@
+  {
+        "type": "website",
+        "url": "https://www.counterweight-app.com/",
+        "title": "Counterweight",
+        "description": "A Hedera DLT powered chain of provenance solution for digital media",
+        "siteName": "Counterweight",
+        "images": [{
+          "url": "public/icon.png"
+        }]
+      }
