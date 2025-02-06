@@ -9,9 +9,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Counterweight',
-  description: 'Your description',
+  description:
+    'A Hedera DLT powered chain of provenance solution for digital media',
   icons: {
-    icon: '/icon.png'
+    icon: '../../public/icon.png'
   }
 }
 
