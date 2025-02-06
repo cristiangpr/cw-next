@@ -85,7 +85,7 @@ export default function Home() {
               }}
             >
               <Typography variant="h4" gutterBottom color="textPrimary">
-                A revolutionary chain of custody solution for digital media
+                A revolutionary chain of provenance solution for digital media
               </Typography>
               <Button
                 variant="contained"
