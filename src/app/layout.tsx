@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     'A Hedera DLT powered chain of provenance solution for digital media',
   icons: {
-    icon: '/icon.png'
+    icon: '/favicon.png'
   },
   manifest: '/manifest.json'
 }
