@@ -1,0 +1,26 @@
+POST http://localhost:3000/api/image-urls HTTP/1.1
+content-type: application/json
+
+{
+    "url": "https://whoxklpbplbypyzeenpy.supabase.co/storage/v1/object/public/cw-bucket//photo_1739667893779.jpg"
+    
+}
+####
+
+
+
+GET http://localhost:3000/users/1 HTTP/1.1
+content-type: application/json
+
+
+####
+
+GET http://localhost:3000/auth/nonce HTTP/1.1
+content-type: application/json
+
+{
+    "username": "sample",
+    "password": "test",
+    "email": "test",
+    "accountId": "1.2.3"
+}
