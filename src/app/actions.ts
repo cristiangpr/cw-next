@@ -9,14 +9,14 @@ function logError(functionName: string, error: unknown) {
   console.error(`[${functionName}] Error:`, error)
 }
 
-// Create table if not exists (shared logic)
+// Ensure table exists before inserting
 async function ensureTableExists(tableQuery: string, functionName: string) {
   try {
-    await sql`${tableQuery}`
+    await sql(tableQuery) // ✅ Execute as a direct string
     console.log(`[${functionName}] Table ensured.`)
   } catch (error) {
-    logError(functionName, error)
-    throw new Error('Failed to create table.')
+    console.error(`[${functionName} ERROR]:`, error)
+    throw new Error(`[${functionName}] Failed to create table.`)
   }
 }
 
@@ -29,7 +29,7 @@ export async function create(
     const message = formData.get('message')
 
     if (!email) {
-      return { success: false, error: 'Email is required' }
+      throw new Error('Email is required') // ❗ Throw instead of returning
     }
 
     await ensureTableExists(
@@ -51,7 +51,7 @@ export async function create(
     return { success: true }
   } catch (error) {
     logError('create', error)
-    return { success: false, error: 'Database operation failed' }
+    throw error // ❗ Propagate to API route
   }
 }
 
@@ -61,7 +61,7 @@ export async function saveUrl(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     if (!url) {
-      return { success: false, error: 'URL is required' }
+      throw new Error('URL is required') // ❗ Throw instead of returning
     }
 
     await ensureTableExists(
@@ -82,6 +82,6 @@ export async function saveUrl(
     return { success: true }
   } catch (error) {
     logError('saveUrl', error)
-    return { success: false, error: 'Database operation failed' }
+    throw error // ❗ Propagate to API route
   }
 }

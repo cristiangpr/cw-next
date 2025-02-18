@@ -2,7 +2,7 @@ POST http://localhost:3000/api/image-urls HTTP/1.1
 content-type: application/json
 
 {
-    "url": "https://whoxklpbplbypyzeenpy.supabase.co/storage/v1/object/public/cw-bucket//photo_1739667893779.jpg"
+    "url": "https://whoxklpbplbypyzeenpy.supabase.co/storage/v1/object/public/cw-bucket//photo_1739846538665.jpg"
     
 }
 ####
