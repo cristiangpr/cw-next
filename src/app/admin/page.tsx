@@ -11,10 +11,12 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Alert
+  Alert,
+  Button
 } from '@mui/material'
 
 import { redirect } from 'next/navigation'
+import { deleteUrls } from '../actions'
 
 export default function AdminDashboard() {
   const { data: session } = useSession()
@@ -42,10 +44,13 @@ export default function AdminDashboard() {
       fetchData()
       console.log(registrations)
     }
-  })
+  }, [])
 
   if (!session) {
     redirect('api/auth/signin')
+  }
+  const handleDelete = async () => {
+    await deleteUrls()
   }
 
   return (
@@ -77,6 +82,7 @@ export default function AdminDashboard() {
       ) : (
         <Typography>No registrations found</Typography>
       )}
+      <Button onClick={handleDelete}>Delete image ulrs</Button>
     </Container>
   )
 }

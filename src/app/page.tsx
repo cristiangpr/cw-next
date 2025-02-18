@@ -12,8 +12,7 @@ import {
   useMediaQuery
 } from '@mui/material'
 import Image from 'next/image'
-import { FadeInSection } from './components/FadeInSection'
-import Header from './components/Header'
+import { FadeInSection } from '@/components/FadeInSection'
 import { create } from './actions'
 import { styled, useTheme } from '@mui/material/styles'
 
@@ -61,7 +60,7 @@ export default function Home() {
   return (
     <StyledBox>
       {/* Hero Section */}
-      <Header />
+
       <FadeInSection>
         <StyledContainer maxWidth="lg">
           <StyledHeroGrid

@@ -85,3 +85,21 @@ export async function saveUrl(
     throw error // ❗ Propagate to API route
   }
 }
+
+export async function deleteUrls(): Promise<{
+  success: boolean
+  error?: string
+}> {
+  try {
+    await sql`
+    DELETE FROM image_urls
+    
+    `
+
+    console.log('[deletUrls] URLs deleted')
+    return { success: true }
+  } catch (error) {
+    logError('deleteUrls', error)
+    throw error // ❗ Propagate to API route
+  }
+}
