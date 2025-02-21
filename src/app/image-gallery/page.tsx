@@ -1,40 +1,37 @@
-'use client'
 import { Box, Container } from '@mui/material'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid2'
 
-const ImageGallery = () => {
-  const [urls, setUrls] = useState<string[] | null>(null)
-  const [loading, setLoading] = useState(true)
+async function getImageUrls() {
+  const response = await fetch('http://localhost:3000/api/image-urls', {
+    cache: 'no-store'
+  })
 
-  useEffect(() => {
-    const fetchImageUrls = async () => {
-      const response = await fetch('/api/image-urls')
-      const data = await response.json()
-      console.log(data)
-      setUrls(data)
-      setLoading(false)
-    }
-    fetchImageUrls()
-  }, [])
+  if (!response.ok) {
+    throw new Error('Failed to fetch image URLs')
+  }
 
-  if (loading) return <div>Loading...</div>
+  return response.json()
+}
+
+export default async function ImageGallery() {
+  const urls = await getImageUrls()
 
   return (
     <Box flexGrow={1}>
-      <Container maxWidth={'lg'}>
-        <Grid container spacing={2} justifyContent={'center'}>
+      <Container maxWidth="lg">
+        <Grid container spacing={2} justifyContent="center">
           {urls &&
-            urls.map((url, index) => (
-              <Grid container justifyContent={'center'} key={url} size={5}>
+            urls.map((url: string, index: number) => (
+              <Grid container justifyContent="center" key={url} size={5}>
                 <Image
                   unoptimized={true}
-                  height={400}
-                  width={250}
+                  height={0}
+                  width={0}
                   key={index}
                   src={url}
                   alt={`image-${index}`}
+                  style={{ width: '75%', height: '75%' }}
                 />
               </Grid>
             ))}
@@ -43,5 +40,3 @@ const ImageGallery = () => {
     </Box>
   )
 }
-
-export default ImageGallery
