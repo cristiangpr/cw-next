@@ -3,9 +3,12 @@ import Image from 'next/image'
 import Grid from '@mui/material/Grid2'
 
 async function getImageUrls() {
-  const response = await fetch('http://localhost:3000/api/image-urls', {
-    cache: 'no-store'
-  })
+  const response = await fetch(
+    'https://www.counterweight-app.com//api/image-urls',
+    {
+      cache: 'no-store'
+    }
+  )
 
   if (!response.ok) {
     throw new Error('Failed to fetch image URLs')
