@@ -26,7 +26,14 @@ export default async function ImageGallery() {
         <Grid container spacing={2} justifyContent="center">
           {urls &&
             urls.map((url: string, index: number) => (
-              <Grid container justifyContent="center" key={url} size={5}>
+              <Grid
+                container
+                justifyContent="center"
+                key={url}
+                size={5}
+                zIndex={10}
+                paddingY={5}
+              >
                 <Image
                   unoptimized={true}
                   height={0}
@@ -34,7 +41,7 @@ export default async function ImageGallery() {
                   key={index}
                   src={url}
                   alt={`image-${index}`}
-                  style={{ width: '75%', height: '75%' }}
+                  style={{ width: '75%', height: 'auto' }}
                 />
               </Grid>
             ))}
