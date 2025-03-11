@@ -20,7 +20,7 @@ const features = [
   {
     title: 'Balance Generative AI',
     description:
-      'In an age where digital content is easily manipulated, trust and authenticity are paramount. By cryptographically ahshing and signing file data at the moment of capture and using all avaliable geolocation techniques, our solution guarantees that every piece of media is securely tracked and its integrity verified. Join us in revolutionizing the way digital media is safeguarded.',
+      'In an age where digital content is easily manipulated, trust and authenticity are paramount. By cryptographically hahshing and signing file data at the moment of capture and using all avaliable geolocation techniques, our solution guarantees that every piece of media is securely tracked and its integrity verified. Join us in revolutionizing the way digital media is safeguarded.',
     image: '/GAI.png'
   },
   {
