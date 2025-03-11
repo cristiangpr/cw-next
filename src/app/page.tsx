@@ -20,13 +20,13 @@ const features = [
   {
     title: 'Balance Generative AI',
     description:
-      'In an age where digital content is easily manipulated, trust and authenticity are paramount. Using a combination of GPS, cell tower data, inertial navigation, AI geolocation, and Hedera DLT, our solution guarantees that every piece of media is securely tracked and verified. Join us in revolutionizing the way digital media is safeguarded.',
+      'In an age where digital content is easily manipulated, trust and authenticity are paramount. By cryptographically ahshing and signing file data at the moment of capture and using all avaliable geolocation techniques, our solution guarantees that every piece of media is securely tracked and its integrity verified. Join us in revolutionizing the way digital media is safeguarded.',
     image: '/GAI.png'
   },
   {
     title: 'Fight Misinformation',
     description:
-      'Trust in media is at an all-time low, journalists face significant challenges in proving the authenticity of their sources. Counterweight ensures that every piece of digital media is securely timestamped and verifiable, safeguarding its integrity from creation to publication. With this technology, journalists can confidently defend their work against misinformation and bolster their credibility. ',
+      'Trust in media is at an all-time low, journalists face significant challenges in proving the authenticity of their sources. By storing cryptographic hashes in on-chain smart contracts, Counterweight ensures that every piece of digital media is publicaly verifiable, safeguarding its integrity from creation to publication. With this technology, journalists can confidently defend their work against misinformation and bolster their credibility. ',
     image: '/journo.png'
   },
   {
