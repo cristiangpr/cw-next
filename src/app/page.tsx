@@ -1,32 +1,27 @@
 // app/page.tsx
 'use client'
 import React, { useState } from 'react'
-import {
-  Container,
-  Grid,
-  Typography,
-  Button,
-  TextField,
-  Box,
-  Modal,
-  useMediaQuery
-} from '@mui/material'
+import { Container, Typography, Button, Box } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import Image from 'next/image'
 import { FadeInSection } from '@/components/FadeInSection'
-import { create } from './actions'
+
 import { styled, useTheme } from '@mui/material/styles'
+import { DemoModal } from '@/components/DemoModal'
+import Diagram from '@/components/Diagram'
+import FAQ from '@/components/FAQ'
 
 const features = [
   {
     title: 'Balance Generative AI',
     description:
-      'In an age where digital content is easily manipulated, trust and authenticity are paramount. By cryptographically hahshing and signing file data at the moment of capture and using all avaliable geolocation techniques, our solution guarantees that every piece of media is securely tracked and its integrity verified. Join us in revolutionizing the way digital media is safeguarded.',
+      'In an age where digital content is easily manipulated, trust and authenticity are paramount. By cryptographically hashing and signing file data at the moment of capture and using all available geolocation techniques, our solution guarantees that every piece of media is securely tracked and its integrity verified. Join us in revolutionizing the way digital media is safeguarded.',
     image: '/GAI.png'
   },
   {
     title: 'Fight Misinformation',
     description:
-      'Trust in media is at an all-time low, journalists face significant challenges in proving the authenticity of their sources. By storing cryptographic hashes in on-chain smart contracts, Counterweight ensures that every piece of digital media is publicaly verifiable, safeguarding its integrity from creation to publication. With this technology, journalists can confidently defend their work against misinformation and bolster their credibility. ',
+      'Trust in media is at an all-time low, journalists face significant challenges in proving the authenticity of their sources. By storing cryptographic hashes in on-chain smart contracts, Counterweight ensures that every piece of digital media is publicly verifiable, safeguarding its integrity from creation to publication. With this technology, journalists can confidently defend their work against misinformation and bolster their credibility. ',
     image: '/journo.png'
   },
   {
@@ -45,17 +40,8 @@ const features = [
 
 export default function Home() {
   const [open, setOpen] = useState(false)
-  const [success, setSuccess] = useState(false)
+
   const theme = useTheme()
-  const isSmall = useMediaQuery(theme.breakpoints.down('md'))
-  const handleCreate = async (data: FormData) => {
-    const response = await create(data)
-    if (response) setSuccess(true)
-  }
-  const handleClose = () => {
-    setOpen(false)
-    setSuccess(false)
-  }
 
   return (
     <StyledBox>
@@ -74,17 +60,14 @@ export default function Home() {
             }}
           >
             <Grid
-              item
-              xs={12}
-              md={6}
+              size={{ xs: 12, md: 6 }}
+              paddingTop={{ xs: 0 }}
               sx={{
-                [theme.breakpoints.down('md')]: {
-                  textAlign: 'center'
-                }
+                textAlign: { xs: 'center', sm: 'left' }
               }}
             >
               <Typography variant="h4" gutterBottom color="textPrimary">
-                A revolutionary chain of provenance solution for digital media
+                A chain of provenance solution for digital media
               </Typography>
               <Button
                 variant="contained"
@@ -92,10 +75,10 @@ export default function Home() {
                 size="large"
                 onClick={() => setOpen(true)}
               >
-                Get Early Access
+                Request a Demo
               </Button>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <StyledImage
                 src="/icon.png"
                 alt="Product Hero"
@@ -123,23 +106,31 @@ export default function Home() {
               }}
             >
               <Grid
-                item
-                xs={12}
-                md={6}
+                size={{ xs: 12, md: 6 }}
                 sx={{
                   [theme.breakpoints.down('md')]: {
                     textAlign: 'center'
                   }
                 }}
               >
-                <Typography variant="h4" gutterBottom color="textPrimary">
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  sx={{ color: 'primary.main' }}
+                  px={1}
+                >
                   {feature.title}
                 </Typography>
-                <Typography variant="body1" paragraph color="textPrimary">
+                <Typography
+                  variant="body1"
+                  component={'p'}
+                  color="textPrimary"
+                  px={1}
+                >
                   {feature.description}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <StyledImage
                   src={feature.image}
                   alt={feature.title}
@@ -161,34 +152,17 @@ export default function Home() {
           </StyledContainer>
         </FadeInSection>
       ))}
+      <FadeInSection>
+        <Diagram />
+      </FadeInSection>
+      <FadeInSection>
+        <FAQ />
+      </FadeInSection>
 
       <StyledContainer maxWidth="lg">
         <Grid container alignItems="center" spacing={4}>
           <Grid
-            item
-            xs={12}
-            sx={{
-              textAlign: 'center',
-              aspectRatio: '16 / 9'
-            }}
-          >
-            <Typography variant="h4" gutterBottom color="textPrimary">
-              Counterweight in action
-            </Typography>
-            <iframe
-              width={isSmall ? '80%' : '50%'}
-              height={isSmall ? '80%' : '50%'}
-              src="https://www.youtube.com/embed/k_HB0IM7Scc?si=4joRITxxc-sl7vR5"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </Grid>
-          <Grid
-            item
-            xs={12}
+            size={12}
             sx={{
               textAlign: 'center'
             }}
@@ -200,48 +174,14 @@ export default function Home() {
               size="large"
               onClick={() => setOpen(true)}
             >
-              Get Early Access
+              Request a Demo
             </Button>
           </Grid>
         </Grid>
       </StyledContainer>
 
       {/* Early Access Modal */}
-      <StyledModal open={open} onClose={() => handleClose()}>
-        <StyledModalContent>
-          {success ? (
-            <Typography gutterBottom align="center" color="textPrimary">
-              Registration Succesful!
-            </Typography>
-          ) : (
-            <Typography gutterBottom align="center" color="textPrimary">
-              Enter your email and write a short message about your interest in
-              Counterweight
-            </Typography>
-          )}
-          <form action={handleCreate}>
-            <StyledTextField
-              fullWidth
-              label="Email Address"
-              variant="outlined"
-              type="email"
-              required
-              name="email"
-            />
-            <StyledTextField
-              fullWidth
-              label="Message"
-              variant="outlined"
-              type="text"
-              required
-              name="message"
-            />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-              Register
-            </Button>
-          </form>
-        </StyledModalContent>
-      </StyledModal>
+      <DemoModal open={open} handleClose={() => setOpen(false)} />
     </StyledBox>
   )
 }
@@ -264,32 +204,4 @@ const StyledHeroGrid = styled(Grid)(({ theme }) => ({
 const StyledImage = styled(Image)({
   width: '100%',
   height: 'auto'
-})
-
-const StyledModalContent = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-  padding: theme.spacing(4),
-  borderRadius: theme.shape.borderRadius,
-  width: '90%',
-  maxWidth: 400
-}))
-
-const StyledTextField = styled(TextField)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  '& .MuiOutlinedInput-root': {
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.primary.main
-    },
-    '&:hover:not(.Mui-focused) .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.secondary.main
-    }
-  },
-  '& .MuiInputLabel-outlined': {
-    color: theme.palette.secondary.main
-  }
-}))
-const StyledModal = styled(Modal)({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
 })

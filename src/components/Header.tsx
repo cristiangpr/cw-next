@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
-import { Container, Grid2 } from '@mui/material'
+import { Container } from '@mui/material'
 
 export default function Header() {
   return (
@@ -12,39 +12,40 @@ export default function Header() {
       <Container maxWidth="lg">
         <AppBar position="static" color="transparent" elevation={0}>
           <Toolbar disableGutters>
-            <Grid2
-              container
+            <Box
+              display="flex"
+              flexDirection="row"
               alignItems="center"
-              justifyContent="center"
-              marginLeft={{ xs: 1, md: '-25px' }}
-              paddingTop={{ xs: 1, sm: 0 }}
+              justifyContent={{ xs: 'center', sm: 'left' }}
+              width="100%" // Ensure it takes full width
             >
               {/* Icon */}
-              <Grid2 sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <Image
                   src="/icon.png"
                   alt="Product Hero"
-                  width={120}
-                  height={120}
+                  width={130}
+                  height={130}
                   priority
                 />
-              </Grid2>
+              </Box>
 
               {/* Title */}
-              <Grid2>
+              <Box>
                 <Typography
-                  variant="h4"
+                  variant="h2"
                   sx={{
-                    fontWeight: 500,
+                    fontWeight: 700,
                     color: 'primary.main',
-
-                    paddingBottom: 2
+                    fontSize: { xs: '2rem', sm: '3rem', md: '3.75rem' },
+                    paddingBottom: { xs: 0, sm: 2 },
+                    paddingTop: { xs: 4, sm: 0 }
                   }}
                 >
                   COUNTERWEIGHT
                 </Typography>
-              </Grid2>
-            </Grid2>
+              </Box>
+            </Box>
           </Toolbar>
         </AppBar>
       </Container>
