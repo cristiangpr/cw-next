@@ -1,15 +1,12 @@
-// app/page.tsx
-'use client'
-import React, { useState } from 'react'
-import { Container, Typography, Button, Box } from '@mui/material'
+import React from 'react'
+import { Container, Typography, Box } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import Image from 'next/image'
 import { FadeInSection } from '@/components/FadeInSection'
 
-import { styled, useTheme } from '@mui/material/styles'
-import { DemoModal } from '@/components/DemoModal'
 import Diagram from '@/components/Diagram'
 import FAQ from '@/components/FAQ'
+import Trigger from '@/components/Trigger'
 
 const features = [
   {
@@ -39,78 +36,71 @@ const features = [
 ]
 
 export default function Home() {
-  const [open, setOpen] = useState(false)
-
-  const theme = useTheme()
-
   return (
-    <StyledBox>
+    <Box sx={{ flex: 1, backgroundColor: 'background.default' }}>
       {/* Hero Section */}
-
-      <FadeInSection>
-        <StyledContainer maxWidth="lg">
-          <StyledHeroGrid
+      <Container
+        sx={{
+          paddingY: 8,
+          paddingX: 0,
+          backgroundColor: 'background.default'
+        }}
+        maxWidth="lg"
+      >
+        <FadeInSection>
+          <Grid
             container
             spacing={4}
             alignItems="center"
             sx={{
-              [theme.breakpoints.down('md')]: {
-                flexDirection: 'column-reverse'
-              }
+              flexDirection: { sm: 'column-reverse', md: 'row' }
             }}
           >
             <Grid
               size={{ xs: 12, md: 6 }}
               paddingTop={{ xs: 0 }}
               sx={{
-                textAlign: { xs: 'center', sm: 'left' }
+                textAlign: { xs: 'center', md: 'left' }
               }}
             >
               <Typography variant="h4" gutterBottom color="textPrimary">
                 A chain of provenance solution for digital media
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                onClick={() => setOpen(true)}
-              >
-                Request a Demo
-              </Button>
+              <Trigger label="Request a Demo" />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
-              <StyledImage
+              <Image
+                style={{
+                  width: '100%',
+                  height: 'auto'
+                }}
                 src="/icon.png"
                 alt="Product Hero"
                 width={600}
                 height={400}
               />
             </Grid>
-          </StyledHeroGrid>
-        </StyledContainer>
-      </FadeInSection>
+          </Grid>
+        </FadeInSection>
 
-      {/* Feature Sections */}
-      {features.map((feature, index) => (
-        <FadeInSection key={feature.title} delay={(index + 1) * 0.2}>
-          <StyledContainer maxWidth="lg">
+        {/* Feature Sections */}
+        {features.map((feature, index) => (
+          <FadeInSection key={feature.title} delay={(index + 1) * 0.2}>
             <Grid
               container
               spacing={4}
-              alignItems="center"
-              direction={index % 2 === 0 ? 'row-reverse' : 'row'}
               sx={{
-                [theme.breakpoints.down('sm')]: {
-                  flexDirection: 'column-reverse'
-                }
+                flexDirection: {
+                  sm: 'column-reverse',
+                  md: index % 2 === 0 ? 'row-reverse' : 'row'
+                },
+                alignItems: 'center'
               }}
             >
               <Grid
                 size={{ xs: 12, md: 6 }}
                 sx={{
-                  [theme.breakpoints.down('md')]: {
-                    textAlign: 'center'
-                  }
+                  textAlign: { xs: 'center', md: 'left' }
                 }}
               >
                 <Typography
@@ -131,35 +121,36 @@ export default function Home() {
                 </Typography>
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
-                <StyledImage
-                  src={feature.image}
-                  alt={feature.title}
-                  width={800}
-                  height={600}
+                <Box
                   sx={{
-                    [theme.breakpoints.up('md')]: {
-                      marginLeft:
-                        index === 0 || index === 2
-                          ? '-100px'
-                          : index === 1
-                          ? '-40px'
-                          : ''
+                    ml: {
+                      xs: 0,
+                      lg: index === 0 ? '-120px' : index === 2 ? '-100px' : 0
                     }
                   }}
-                />
+                >
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    width={800}
+                    height={600}
+                    style={{
+                      width: '100%',
+                      height: 'auto'
+                    }}
+                  />
+                </Box>
               </Grid>
             </Grid>
-          </StyledContainer>
+          </FadeInSection>
+        ))}
+        <FadeInSection>
+          <Diagram />
         </FadeInSection>
-      ))}
-      <FadeInSection>
-        <Diagram />
-      </FadeInSection>
-      <FadeInSection>
-        <FAQ />
-      </FadeInSection>
+        <FadeInSection>
+          <FAQ />
+        </FadeInSection>
 
-      <StyledContainer maxWidth="lg">
         <Grid container alignItems="center" spacing={4}>
           <Grid
             size={12}
@@ -168,40 +159,12 @@ export default function Home() {
             }}
           >
             {' '}
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={() => setOpen(true)}
-            >
-              Request a Demo
-            </Button>
+            <Trigger label="Request a Demo" />
           </Grid>
         </Grid>
-      </StyledContainer>
+      </Container>
 
       {/* Early Access Modal */}
-      <DemoModal open={open} handleClose={() => setOpen(false)} />
-    </StyledBox>
+    </Box>
   )
 }
-const StyledBox = styled(Box)(({ theme }) => ({
-  flex: 1,
-  backgroundColor: theme.palette.background.default
-}))
-const StyledContainer = styled(Container)(({ theme }) => ({
-  padding: theme.spacing(8, 0),
-  backgroundColor: theme.palette.background.default
-}))
-
-const StyledHeroGrid = styled(Grid)(({ theme }) => ({
-  height: 'auto',
-  [theme.breakpoints.down('sm')]: {
-    height: 'auto'
-  }
-}))
-
-const StyledImage = styled(Image)({
-  width: '100%',
-  height: 'auto'
-})

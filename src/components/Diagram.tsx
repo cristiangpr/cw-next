@@ -1,5 +1,5 @@
-'use client'
-import { Grid, Stack, Box, Typography, Paper } from '@mui/material'
+import { Stack, Box, Typography, Paper } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import CameraAltIcon from '@mui/icons-material/CameraAlt'
 import GpsFixedIcon from '@mui/icons-material/GpsFixed'
 import LockIcon from '@mui/icons-material/Lock'
@@ -39,19 +39,19 @@ const steps = [
 
 export default function Diagram() {
   return (
-    <Box sx={{ py: 4, px: 8 }}>
+    <Box sx={{ p: 4 }}>
       <Typography
         sx={{ color: 'primary.main' }}
         variant="h4"
         textAlign="center"
         gutterBottom
-        padding={4}
+        padding={8}
       >
         How Counterweight Works
       </Typography>
       <Grid container spacing={4} justifyContent="center" alignItems="stretch">
         {steps.map((step, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
             <Paper
               elevation={3}
               sx={{ p: 3, textAlign: 'center', height: '100%' }}

@@ -1,4 +1,3 @@
-'use client'
 import { Stack, Box, Typography, Paper } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 

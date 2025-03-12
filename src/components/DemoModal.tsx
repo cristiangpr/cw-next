@@ -1,26 +1,37 @@
+'use client'
 import { styled } from '@mui/material/styles'
 import { Box, Button, Modal, TextField, Typography } from '@mui/material'
+import { Verified } from '@mui/icons-material'
 import { create } from '@/app/actions'
 import { useState } from 'react'
 
 interface ModalProps {
   open: boolean
-  handleClose: () => void
+  onClose: () => void
 }
 
-export const DemoModal = ({ open, handleClose }: ModalProps) => {
+export const DemoModal = ({ open, onClose }: ModalProps) => {
   const [success, setSuccess] = useState<boolean>(false)
   const handleCreate = async (data: FormData) => {
     const response = await create(data)
     if (response) setSuccess(true)
   }
+  const handleClose = () => {
+    onClose()
+    setSuccess(false)
+  }
   return (
-    <StyledModal open={open} onClose={() => handleClose()}>
+    <StyledModal open={open} onClose={handleClose}>
       <StyledModalContent>
         {success ? (
-          <Typography gutterBottom align="center" color="textPrimary">
-            Registration Succesful!
-          </Typography>
+          <>
+            <Box display="flex" justifyContent="center" width="100%" mb={1}>
+              <Verified fontSize="large" sx={{ color: 'secondary.main' }} />
+            </Box>
+            <Typography gutterBottom align="center" color="textPrimary">
+              Registration Successful!
+            </Typography>
+          </>
         ) : (
           <Typography gutterBottom align="center" color="textPrimary">
             Enter your email and write a short message about your interest in
