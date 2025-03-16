@@ -26,9 +26,9 @@ export const DemoModal = ({ open, onClose }: ModalProps) => {
         {success ? (
           <>
             <Box display="flex" justifyContent="center" width="100%" mb={1}>
-              <Verified fontSize="large" sx={{ color: 'secondary.main' }} />
+              <Verified fontSize="large" sx={{ color: 'primary.main' }} />
             </Box>
-            <Typography gutterBottom align="center" color="textPrimary">
+            <Typography gutterBottom align="center" color="primary.main">
               Registration Successful!
             </Typography>
           </>
@@ -83,7 +83,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     }
   },
   '& .MuiInputLabel-outlined': {
-    color: theme.palette.secondary.main
+    color: theme.palette.primary.main
   }
 }))
 const StyledModal = styled(Modal)({
