@@ -43,7 +43,7 @@ export default function FAQ() {
               }}
             >
               <Stack alignItems="center" spacing={2}>
-                <Typography sx={{ color: 'secondary.main' }} variant="h6">
+                <Typography sx={{ color: 'primary.main' }} variant="h6">
                   {step.title}
                 </Typography>
                 <Typography variant="body2">{step.description}</Typography>

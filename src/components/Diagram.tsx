@@ -8,29 +8,29 @@ import VerifiedIcon from '@mui/icons-material/Verified'
 
 const steps = [
   {
-    icon: <CameraAltIcon sx={{ color: 'secondary.main' }} fontSize="large" />,
+    icon: <CameraAltIcon sx={{ color: 'primary.main' }} fontSize="large" />,
     title: 'Capture Image',
     description:
       'User takes a photo or video using mobile or USB connected camera.'
   },
   {
-    icon: <GpsFixedIcon sx={{ color: 'secondary.main' }} fontSize="large" />,
-    title: 'Extract Metadata',
-    description: 'Extract EXIF, GPS, and cell tower data'
+    icon: <GpsFixedIcon sx={{ color: 'primary.main' }} fontSize="large" />,
+    title: 'Verify Location',
+    description: 'Extract EXIF, GPS, and cell tower data and verify with AI'
   },
   {
-    icon: <LockIcon sx={{ color: 'secondary.main' }} fontSize="large" />,
-    title: 'Generate Hashes',
+    icon: <LockIcon sx={{ color: 'primary.main' }} fontSize="large" />,
+    title: 'Generate C2PA Certificate',
     description:
-      'Compute and securely sign cryptographic hashes of image & metadata.'
+      'Compute and securely sign cryptographic hashes of image & metadata and generate certificate'
   },
   {
-    icon: <CloudUploadIcon sx={{ color: 'secondary.main' }} fontSize="large" />,
+    icon: <CloudUploadIcon sx={{ color: 'primary.main' }} fontSize="large" />,
     title: 'Store on Blockchain',
-    description: 'Record hashes in an immutable smart contract.'
+    description: 'Record certificate in an immutable smart contract.'
   },
   {
-    icon: <VerifiedIcon sx={{ color: 'secondary.main' }} fontSize="large" />,
+    icon: <VerifiedIcon sx={{ color: 'primary.main' }} fontSize="large" />,
     title: 'Verify via Clients',
     description:
       'Mobile app, browser extension, or social media clients verify authenticity in real time.'
@@ -58,7 +58,7 @@ export default function Diagram() {
             >
               <Stack alignItems="center" spacing={2}>
                 {step.icon}
-                <Typography sx={{ color: 'secondary.main' }} variant="h6">
+                <Typography sx={{ color: 'primary.main' }} variant="h6">
                   {step.title}
                 </Typography>
                 <Typography variant="body2">{step.description}</Typography>

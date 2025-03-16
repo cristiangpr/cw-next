@@ -12,7 +12,7 @@ const features = [
   {
     title: 'Balance Generative AI',
     description:
-      'In an age where digital content is easily manipulated, trust and authenticity are paramount. By cryptographically hashing and signing file data at the moment of capture and using all available geolocation techniques, our solution guarantees that every piece of media is securely tracked and its integrity verified. Join us in revolutionizing the way digital media is safeguarded.',
+      'In an age where digital content is easily manipulated, trust and authenticity are paramount. By implementing th C2PA (Coalition for Content Provenance and Authenticity) standard and combining GPS, cell tower data and AI geolocation, our solution guarantees that every piece of media is securely tracked and its integrity verified. Join us in revolutionizing the way digital media is safeguarded.',
     image: '/GAI.png'
   },
   {
@@ -64,7 +64,7 @@ export default function Home() {
               }}
             >
               <Typography variant="h4" gutterBottom color="textPrimary">
-                A chain of provenance solution for digital media
+                Immutable provenance certification for digital media.
               </Typography>
               <Trigger label="Request a Demo" />
             </Grid>

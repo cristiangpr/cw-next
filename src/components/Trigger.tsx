@@ -15,7 +15,7 @@ export default function ModalTrigger({ label }: TriggerProps) {
     <>
       <Button
         variant="contained"
-        sx={{ width: '200' }}
+        sx={{ minWidth: '200', backgroundColor: 'secondary.main' }}
         onClick={() => setIsOpen(true)}
       >
         {label}
