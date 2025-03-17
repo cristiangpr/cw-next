@@ -20,14 +20,14 @@ const steps = [
   },
   {
     icon: <LockIcon sx={{ color: 'primary.main' }} fontSize="large" />,
-    title: 'Generate C2PA Certificate',
+    title: 'Generate C2PA Manifest',
     description:
-      'Compute and securely sign cryptographic hashes of image & metadata and generate certificate'
+      'Compute and securely sign cryptographic hashes of media & metadata and generate manifest'
   },
   {
     icon: <CloudUploadIcon sx={{ color: 'primary.main' }} fontSize="large" />,
     title: 'Store on Blockchain',
-    description: 'Record certificate in an immutable smart contract.'
+    description: 'Record manifest in an immutable smart contract.'
   },
   {
     icon: <VerifiedIcon sx={{ color: 'primary.main' }} fontSize="large" />,
